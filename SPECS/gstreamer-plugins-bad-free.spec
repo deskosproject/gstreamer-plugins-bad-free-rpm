@@ -14,7 +14,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad-free
 Version: 0.10.23
-Release: 20%{?dist}
+Release: 20.1%{?dist}
 # The freeze and nfs plugins are LGPLv2 (only)
 License: LGPLv2+ and LGPLv2
 Group: Applications/Multimedia
@@ -194,6 +194,11 @@ chrpath --delete $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.so
 rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.la
 rm $RPM_BUILD_ROOT%{_libdir}/*.la
 
+# Fix CVE-2016-9445, CVE-2016-9446
+rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/libgstvmnc.so
+
+# Fix CVE-2016-9447
+rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/libgstnsf.so
 
 %post -p /sbin/ldconfig
 
@@ -255,7 +260,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.la
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegvideoparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmve.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmxf.so
-%{_libdir}/gstreamer-%{majorminor}/libgstnsf.so
+#%{_libdir}/gstreamer-%{majorminor}/libgstnsf.so
 %{_libdir}/gstreamer-%{majorminor}/libgstnuvdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstpatchdetect.so
 %{_libdir}/gstreamer-%{majorminor}/libgstpcapparse.so
@@ -280,7 +285,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.la
 %{_libdir}/gstreamer-%{majorminor}/libgstvideomaxrate.so
 %{_libdir}/gstreamer-%{majorminor}/libgstvideomeasure.so
 %{_libdir}/gstreamer-%{majorminor}/libgstvideoparsersbad.so
-%{_libdir}/gstreamer-%{majorminor}/libgstvmnc.so
+#%{_libdir}/gstreamer-%{majorminor}/libgstvmnc.so
 %{_libdir}/gstreamer-%{majorminor}/libgsty4mdec.so
 
 # System (Linux) specific plugins
@@ -365,6 +370,11 @@ rm $RPM_BUILD_ROOT%{_libdir}/*.la
 
 
 %changelog
+* Tue Nov 29 2016 Ricardo Arguello <rarguello@deskosproject.org> - 0.10.23-20.1
+- Fix CVE-2016-9445, CVE-2016-9446 by removing libgstvmnc.so
+- Fix CVE-2016-9447 by removing libgstnsf.so
+- Rebuilt for DeskOS
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.10.23-20
 - Mass rebuild 2014-01-24
 

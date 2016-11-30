@@ -1,0 +1,5 @@
+= DeskOS: gstreamer-plugins-bad-free RPM
+
+This is the _gstreamer-plugins-bad-free_ RPM package for the *DeskOS* operating system.
+
+Upstream comes from CentOS 7.
